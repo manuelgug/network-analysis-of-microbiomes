@@ -52,7 +52,7 @@ install.packages(c(
   
   # Data manipulation and visualization
   "tidyverse", "ggplot2", "patchwork", "ggpubr",
-  "scales", "randomcoloR"
+  "scales", "randomcoloR", "ggraph", "purrr"
 ))
 
 # Bioconductor packages
