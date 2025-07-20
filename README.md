@@ -26,7 +26,6 @@ This pipeline demonstrates advanced microbial network ecology using real data fr
 - [Data Requirements](#data-requirements)
 - [Quick Start](#quick-start)
 - [Workflow Overview](#workflow-overview)
-- [Methodology](#methodology)
 - [License](#license)
 
 ## 🚀 Installation
@@ -120,6 +119,17 @@ The analysis generates several key outputs:
 - Convert correlation matrices to igraph network objects
 - Undirected, weighted, positive correlations only
 
+```r
+# Spearman correlation with significance testing
+res <- cor.test(otu_rel[i, ], otu_rel[j, ], method = "spearman")
+cor_mat[i, j] <- res$estimate
+p_mat[i, j] <- res$p.value
+
+# Filter for positive, significant correlations
+cor_mat[abs(cor_mat) < cutoff | p_mat > pval_cutoff] <- 0
+cor_mat[cor_mat < 0] <- 0  # Remove negative correlations
+```
+
 ### 3. Network Topology Analysis
 - Quantify structural properties: nodes, edges, degree distribution
 - Calculate global metrics: transitivity, modularity, density
@@ -132,34 +142,6 @@ The analysis generates several key outputs:
 - Visualize relationships between network size and structure
 
 ![network_metrics](imgs/metrics-visualization-1.png)
-
-
-## 🔬 Methodology
-
-### Co-occurrence Network Construction
-
-The pipeline constructs correlation-based networks for each environment:
-
-```r
-# Spearman correlation with significance testing
-res <- cor.test(otu_rel[i, ], otu_rel[j, ], method = "spearman")
-cor_mat[i, j] <- res$estimate
-p_mat[i, j] <- res$p.value
-
-# Filter for positive, significant correlations
-cor_mat[abs(cor_mat) < cutoff | p_mat > pval_cutoff] <- 0
-cor_mat[cor_mat < 0] <- 0  # Remove negative correlations
-```
-
-### Network Topology Metrics
-
-Key metrics calculated for each network:
-
-- **Nodes/Edges**: Network size quantification
-- **Average Degree**: Mean connectivity per node
-- **Transitivity**: Global clustering coefficient
-- **Modularity**: Community structure strength
-- **Density**: Proportion of possible edges realized
 
 ## 🏷️ Keywords
 
