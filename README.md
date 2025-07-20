@@ -118,8 +118,7 @@ The analysis generates several key outputs:
 - Apply statistical significance filtering (p < 0.05)
 - Retain positive correlations above threshold (|r| > 0.6)
 - Convert correlation matrices to igraph network objects
-
-![network_metrics](imgs/network_metrics.png)
+- Undirected, weighted, positive correlations only
 
 ### 3. Network Topology Analysis
 - Quantify structural properties: nodes, edges, degree distribution
@@ -132,15 +131,8 @@ The analysis generates several key outputs:
 - Identify environments with highest modularity and connectivity
 - Visualize relationships between network size and structure
 
-![network_comparison](imgs/network_comparison.png)
+![network_metrics](imgs/metrics-visualization-1.png)
 
-### 5. Publication-Quality Visualization
-- Force-directed layouts using Fruchterman-Reingold algorithm
-- Node sizing based on degree centrality
-- Edge transparency reflecting correlation strength
-- Multi-panel comparative displays
-
-![statistical_comparison](imgs/statistical_comparison.png)
 
 ## 🔬 Methodology
 
@@ -168,23 +160,6 @@ Key metrics calculated for each network:
 - **Transitivity**: Global clustering coefficient
 - **Modularity**: Community structure strength
 - **Density**: Proportion of possible edges realized
-
-### Community Detection
-
-```r
-# Fast greedy modularity optimization
-communities <- cluster_fast_greedy(network)
-modularity_score <- communities$modularity
-```
-
-### Statistical Framework
-
-- **Layout Algorithm**: Fruchterman-Reingold force-directed
-- **Correlation Method**: Spearman (robust to non-normal distributions)
-- **Significance Level**: p < 0.05
-- **Correlation Threshold**: |r| > 0.6
-- **Multiple Comparisons**: Considered in interpretation
-- **Network Type**: Undirected, weighted, positive correlations only
 
 ## 🏷️ Keywords
 
